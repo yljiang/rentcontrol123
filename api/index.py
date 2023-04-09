@@ -11,7 +11,6 @@ app = Flask(__name__)
 # db = client['realEstate']
 # buildings_collection = db['nycRentControlledBuildings']
 
-
 @app.route('/')
 def home():
     return 'Hello, World!'
