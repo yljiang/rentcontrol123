@@ -1,13 +1,12 @@
 import datetime
 
 from flask import Flask, render_template, request, jsonify
-# from pymongo import MongoClient
+from pymongo import MongoClient
 import os
 
 app = Flask(__name__)
 #
-conn =os.environ.get('MONGO_CONNECTION')
-print(conn)
+conn = os.environ.get('MONGO_CONNECTION')
 client = MongoClient(conn)
 db = client['realEstate']
 buildings_collection = db['nycRentControlledBuildings']
@@ -21,8 +20,8 @@ def get_rent_controlled():
     address = request.args.get('address')
     # Check if the address is rent-controlled
     is_rent_controlled = False
-    # if buildings_collection.find_one({'address': address}):
-    #     is_rent_controlled = True
+    if buildings_collection.find_one({'address': address}):
+        is_rent_controlled = True
 
     return jsonify({
         'isRentControlled': is_rent_controlled,
@@ -34,8 +33,8 @@ def about():
     address = request.args.get('address')
     # Check if the address is rent-controlled
     is_rent_controlled = False
-    # if buildings_collection.find_one({'address': address}):
-    #     is_rent_controlled = True
+    if buildings_collection.find_one({'address': address}):
+        is_rent_controlled = True
 
     return jsonify({
         'isRentControlled': is_rent_controlled,
