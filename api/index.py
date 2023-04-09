@@ -6,7 +6,7 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 #
-# print(os.getenv('MONGO_CONNECTION'))
+print(os.getenv('MONGO_CONNECTION'))
 # client = MongoClient(os.getenv('MONGO_CONNECTION'))
 # db = client['realEstate']
 # buildings_collection = db['nycRentControlledBuildings']
@@ -29,6 +29,15 @@ def get_rent_controlled():
         'address': address
     })
 
-@app.route('/about')
+@app.route('/about', methods=['GET'])
 def about():
-    return 'About'
+    address = request.args.get('address')
+    # Check if the address is rent-controlled
+    is_rent_controlled = False
+    # if buildings_collection.find_one({'address': address}):
+    #     is_rent_controlled = True
+
+    return jsonify({
+        'isRentControlled': is_rent_controlled,
+        'address': address
+    })
