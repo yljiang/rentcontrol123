@@ -6,10 +6,11 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 #
-# print(os.getenv('MONGO_CONNECTION'))
-# client = MongoClient(os.getenv('MONGO_CONNECTION'))
-# db = client['realEstate']
-# buildings_collection = db['nycRentControlledBuildings']
+conn =os.environ.get('MONGO_CONNECTION')
+print(conn)
+client = MongoClient(conn)
+db = client['realEstate']
+buildings_collection = db['nycRentControlledBuildings']
 
 @app.route('/')
 def home():
