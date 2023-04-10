@@ -3,9 +3,13 @@ import datetime
 from flask import Flask, render_template, request, jsonify
 from pymongo import MongoClient
 import os
+from flask_cors import CORS
+
 
 app = Flask(__name__)
-#
+CORS(app)
+
+
 conn = os.environ.get('MONGODB_URI')
 client = MongoClient(conn)
 db = client['realEstate']
