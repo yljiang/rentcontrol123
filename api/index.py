@@ -6,7 +6,7 @@ import os
 
 app = Flask(__name__)
 #
-conn = os.environ.get('MONGO_CONNECTION')
+conn = os.environ.get('MONGODB_URI')
 client = MongoClient(conn)
 db = client['realEstate']
 buildings_collection = db['nycRentControlledBuildings']
