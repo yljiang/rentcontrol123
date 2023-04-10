@@ -20,7 +20,6 @@ def home():
     return 'Hello, World!'
 
 @app.route('/getRentControlled', methods=['GET'])
-@cross_origin()
 def get_rent_controlled():
     address = request.args.get('address')
     # Check if the address is rent-controlled
@@ -34,7 +33,6 @@ def get_rent_controlled():
     })
 
 @app.route('/about', methods=['GET'])
-@cross_origin()
 def about():
     address = request.args.get('address')
     # Check if the address is rent-controlled
